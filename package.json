@@ -1,0 +1,22 @@
+{
+  "name": "overmonitor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "cli-color": "^2.0.0",
+    "clinic": "^9.0.0",
+    "clui": "^0.3.6",
+    "figlet": "^1.5.0",
+    "format-duration": "^1.4.0",
+    "systeminformation": "^5.8.0",
+    "table": "^6.7.1"
+  }
+}
