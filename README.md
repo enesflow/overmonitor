@@ -9,4 +9,4 @@ add theming
 # to build
 
 ```bash
-pkg index.js --config package.json``` 
+npx pkg index.js --config package.json``` 
