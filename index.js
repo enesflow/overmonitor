@@ -6,7 +6,9 @@ const format = require("format-duration");
 const {table} = require("table");
 const Conf = require("conf");
 const inquirer = require("inquirer");
-const config = new Conf();
+const config = new Conf({
+	projectName: "overmonitor",
+});
 
 const langs = {
 	en: {
