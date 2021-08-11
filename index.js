@@ -4,6 +4,9 @@ const figlet = require("figlet");
 const clui = require("clui");
 const format = require("format-duration");
 const {table} = require("table");
+const Conf = require("conf");
+const inquirer = require("inquirer");
+const config = new Conf();
 
 const langs = {
 	en: {
@@ -50,7 +53,7 @@ let networkDown;
 let networkUp;
 
 //progress | graph
-let style = "progress";
+let style;
 
 let globalPrint = [];
 
@@ -102,7 +105,33 @@ figlet.text(
 		ascii_text = data;
 
 		(async () => {
-			main();
+			if (!config.get("style")) {
+				inquirer
+					.prompt([
+						{
+							type: "list",
+							name: "style",
+							message: "Please select a style",
+							choices: [
+								"progress	|██████████████⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿| 53%",
+								"graph		▅▅▅▅▅▅▅▆▆▇▇██████▅▅▅▅▅▅▅▅▅▅  51% (98%)",
+							],
+						},
+					])
+					.then((answers) => {
+						if (answers.style.includes("graph")) {
+							config.set("style", "graph");
+						}
+						if (answers.style.includes("progress")) {
+							config.set("style", "progress");
+						}
+						style = config.get("style");
+						main();
+					});
+			} else {
+				style = config.get("style");
+				main();
+			}
 		})();
 	}
 );
